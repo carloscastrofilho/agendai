@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -20,11 +21,18 @@ export default function Login() {
   const [password, setPassword] = useState<string | null>(null);
 
   function OnPress() {
-    console.log("clicou para fazer registro");
-    console.log(login);
-    console.log(password);
-
-    // router.navigate('/(tabs)')
+    // validar se login e um email valido
+    if( ! login ){
+        Alert.alert(" email invalido ...");
+        return
+    }
+    // validar login e password
+    if ( login != "teste@teste.com" || password != "123"){
+        Alert.alert(" login ou senha invalido...");
+        return
+    }
+    // chama a tela de dashboard
+    router.navigate('/(tabs)')
   }
 
   return (
@@ -59,14 +67,14 @@ export default function Login() {
           />
         </View>
 
-        {login && (
+        { (login || password) && (
           <TouchableOpacity
             style={[styles.button]}
             onPress={() => (OnPress())}>
             <Text style={[styles.buttonText]} > Acessar </Text>
           </TouchableOpacity>
         )}
-        {!login && (
+        { !login && !password && (
           <TouchableOpacity
             style={[styles.disabledButton]}
           >
