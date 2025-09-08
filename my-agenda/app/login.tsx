@@ -8,16 +8,24 @@ import {
 } from "react-native";
 
 import { Link, useNavigation, useRouter } from "expo-router";
+import { useState } from "react";
 const logoApp = require('@/assets/images/logoagendei.png');
 
 export default function Login() {
-  function OnPress() {
-    console.log("clicou para fazer registro");
-    router.navigate('/(tabs)')
-  }
-
   const navigation = useNavigation();
   const router = useRouter();
+
+  // declarar variaveis
+  const [login, setLogin] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+
+  function OnPress() {
+    console.log("clicou para fazer registro");
+    console.log(login);
+    console.log(password);
+
+    // router.navigate('/(tabs)')
+  }
 
   return (
     <View style={styles.container}>
@@ -37,7 +45,9 @@ export default function Login() {
         <View style={styles.containerInput}>
           <Text style={styles.inputText}>Login</Text>
           <TextInput style={styles.input}
+            value={login || ""}
             placeholder=" informe o email de acesso ..."
+            onChangeText={(e) => setLogin(e)}
           />
         </View>
 
@@ -45,18 +55,24 @@ export default function Login() {
           <Text style={styles.inputText}> Senha:</Text>
           <TextInput style={styles.input}
             placeholder="informe a senha de acesso ..."
+            onChangeText={(e) => setPassword(e)}
           />
         </View>
 
-
-        <TouchableOpacity
-          style={[styles.button]}
-          onPress={() => (OnPress())}>
-            
+        {login && (
+          <TouchableOpacity
+            style={[styles.button]}
+            onPress={() => (OnPress())}>
             <Text style={[styles.buttonText]} > Acessar </Text>
-            
-          
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
+        {!login && (
+          <TouchableOpacity
+            style={[styles.disabledButton]}
+          >
+            <Text style={[styles.buttonText]} > Acessar </Text>
+          </TouchableOpacity>
+        )}
 
       </View>
       <View style={styles.footer}>
@@ -82,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 45,
     backgroundColor: "#ffffff",
-    paddingLeft: 20 ,
+    paddingLeft: 20,
     paddingRight: 20,
   },
 
@@ -121,30 +137,29 @@ const styles = StyleSheet.create({
     height: 50,
   },
 
-  containerInput :{
+  containerInput: {
     width: "100%",
     padding: 5,
-    borderWidth: 0 ,
-    borderColor : "gray",
+    borderWidth: 0,
+    borderColor: "gray",
     borderRadius: 15,
     paddingLeft: 10,
 
-    
+
   },
 
-  inputText :{
+  inputText: {
     fontWeight: "bold",
-
+    fontSize: 22,
   },
+
   input: {
     backgroundColor: '#F1F5F4',
     width: '100%',
-    borderColor : "gray",
+    borderColor: "gray",
     marginTop: 4,
     borderRadius: 5,
     fontSize: 16,
-    
-
   },
 
   link: {
@@ -166,7 +181,18 @@ const styles = StyleSheet.create({
     color: "#ffffff",
     fontSize: 20,
     fontWeight: "bold"
-  }
+
+  },
+  disabledButton: {
+    marginTop: 45,
+    width: "100%",
+    height: 50,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: 'gray', // Visual indication of disabled state
+    opacity: 0.7,
+  },
 
 });
 
