@@ -1,0 +1,22 @@
+---
+marp: true;
+---
+
+
+
+| HTML    | React-native   | descritivo do uso |
+|  TAG    | Component      |
+|---------|----------------|-------------------|
+|  div    | View | | 
+|  label  | Text | |
+|  img    | Image | |
+|  imput  | TextInput | |
+|  button | Button | |
+
+|  a Href |  Link | |
+|  a Href / onClick    | TouchableOpacity |
+
+---
+
+
+
