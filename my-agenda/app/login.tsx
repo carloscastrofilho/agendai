@@ -85,7 +85,7 @@ export default function Login() {
       </View>
       <View style={styles.footer}>
 
-        <Text>
+        <Text style={styles.texto}>
           Não tenho conta.
         </Text>
 
@@ -167,12 +167,16 @@ const styles = StyleSheet.create({
     borderColor: "gray",
     marginTop: 4,
     borderRadius: 5,
-    fontSize: 16,
+    fontSize: 22,
   },
-
+  texto : {
+    fontWeight: "bold",
+    fontSize: 22,
+  },
   link: {
     color: "#0D6EFD",
     fontWeight: "bold",
+    fontSize: 22,
   },
 
   button: {
@@ -187,10 +191,11 @@ const styles = StyleSheet.create({
 
   buttonText: {
     color: "#ffffff",
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: "bold"
 
   },
+
   disabledButton: {
     marginTop: 45,
     width: "100%",
@@ -200,6 +205,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: 'gray', // Visual indication of disabled state
     opacity: 0.7,
+    color: "#000",
   },
 
 });
