@@ -20,19 +20,50 @@ export default function Login() {
   const [login, setLogin] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
 
-  function OnPress() {
+
+
+  async function OnPress() {
     // validar se login e um email valido
-    if( ! login ){
-        Alert.alert(" email invalido ...");
-        return
+    if (!login) {
+      Alert.alert(" email invalido ...");
+      return
     }
+
     // validar login e password
-    if ( login != "teste@teste.com" || password != "123"){
-        Alert.alert(" login ou senha invalido...");
-        return
-    }
+    // if ( login != "teste@teste.com" || password != "123"){
+    //     Alert.alert(" login ou senha invalido...");
+    //     return
+    // }
+
+
+    fetch('https://api.exemplo.com/dados', {
+      method: 'POST', // Define o método da requisição como POST
+      headers: {
+        'Content-Type': 'application/json' // Indica que estamos enviando dados JSON
+      },
+      body: JSON.stringify({ // Converte o objeto JavaScript em uma string JSON
+        nome: 'Exemplo',
+        valor: 123
+      })
+    }).then(response => {
+      if (response.ok) {
+        console.log(response);
+        return response.json(); // Processa a resposta JSON se for bem-sucedida
+      } else {
+        throw new Error(`Erro na requisição: ${response.status}`);
+      }
+    })
+      .then(data => {
+        console.log('Dados enviados com sucesso:', data); // Exibe os dados recebidos da API
+      })
+      .catch(error => {
+        console.error('Erro ao enviar os dados:', error); // Captura e exibe erros na requisição
+      });
+
+    
+
     // chama a tela de dashboard
-    router.navigate('/(tabs)')
+    // router.navigate('/(tabs)')
   }
 
   return (
@@ -67,14 +98,14 @@ export default function Login() {
           />
         </View>
 
-        { (login || password) && (
+        {(login || password) && (
           <TouchableOpacity
             style={[styles.button]}
             onPress={() => (OnPress())}>
             <Text style={[styles.buttonText]} > Acessar </Text>
           </TouchableOpacity>
         )}
-        { !login && !password && (
+        {!login && !password && (
           <TouchableOpacity
             style={[styles.disabledButton]}
           >
