@@ -19,9 +19,16 @@ export default function Login() {
   // declarar variaveis
   const [login, setLogin] = useState<string | null>(null);
   const [password, setPassword] = useState<string | null>(null);
+  
+  function onClickButtonDisabled() {
+    Alert.alert( "botão desabilitadao ! \nInforme os dados para acesso !")
+    return
+  }
 
-  function OnPress() {
+  function OnClickLogin() {
     // validar se login e um email valido
+    console.log( login );
+
     if( ! login ){
         Alert.alert(" email invalido ...");
         return
@@ -45,7 +52,7 @@ export default function Login() {
           source={logoApp}
           style={styles.logo}
         />
-
+        <Text style={styles.textlogin}>Login</Text>
       </View>
 
       <View style={styles.main}>
@@ -70,12 +77,13 @@ export default function Login() {
         { (login || password) && (
           <TouchableOpacity
             style={[styles.button]}
-            onPress={() => (OnPress())}>
+            onPress={ () => (OnClickLogin()) }>
             <Text style={[styles.buttonText]} > Acessar </Text>
           </TouchableOpacity>
         )}
         { !login && !password && (
           <TouchableOpacity
+            onPress={ onClickButtonDisabled }
             style={[styles.disabledButton]}
           >
             <Text style={[styles.buttonText]} > Acessar </Text>
@@ -114,8 +122,12 @@ const styles = StyleSheet.create({
     flex: 3 / 10,
     width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
+    justifyContent: 'space-between',
+    padding : 20,
+    marginTop: 50,
+    
+    
+    
 
   },
 
@@ -202,5 +214,10 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
 
+  textlogin: {
+    fontWeight: "bold",
+    fontSize: 36,
+    color: "red"
+  },
 });
 

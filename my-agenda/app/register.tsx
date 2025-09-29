@@ -1,18 +1,33 @@
 import {
-    Image,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View
+  Image,
+  StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View
 } from "react-native";
 
 import { Link, useNavigation } from "expo-router";
+import { useState } from "react";
+
+import {  Eye , EyeOff } from 'lucide-react-native';
+
 const logoApp = require('@/assets/images/logoagendei.png');
 
-export default function Register () {
+export default function Register() {
+  const [nome, setNome] = useState<string>(null);
+  const [login, setLogin] = useState<string>(null);
+  const [password, setPassword] = useState<string>(null);
+  const [password2, setPassword2] = useState<string>(null);
+  const [viewPassword, setViewPassord] = useState<boolean>(false);
+
   function OnPress() {
     console.log("clicou para fazer registro");
+    console.log(nome);
+    console.log(login);
+    console.log(password);
+    console.log(password2);
+
   }
   const navigation = useNavigation();
 
@@ -26,15 +41,18 @@ export default function Register () {
           source={logoApp}
           style={styles.logo}
         />
+        <Text style={styles.inputText}>Criar Conta</Text>
 
       </View>
 
       <View style={styles.main}>
 
-          <View style={styles.containerInput}>
+        <View style={styles.containerInput}>
           <Text style={styles.inputText}>Nome</Text>
           <TextInput style={styles.input}
             placeholder=" informe o seu nome completo ..."
+            onChangeText={(value) => { setNome(value) }}
+            value={nome || ""}
           />
         </View>
 
@@ -42,19 +60,44 @@ export default function Register () {
           <Text style={styles.inputText}>Login</Text>
           <TextInput style={styles.input}
             placeholder=" informe o email de acesso ..."
+            onChangeText={(value) => { setLogin(value) }}
+            value={login || ""}
           />
         </View>
 
         <View style={styles.containerInput}>
+
           <Text style={styles.inputText}> Senha:</Text>
-          <TextInput style={styles.input}
-            placeholder="informe a senha de acesso ..."
-          />
+
+          <View style={styles.containerSenha}>
+
+            <TextInput style={styles.input}
+              placeholder="informe a senha de acesso ..."
+              onChangeText={(value) => { setPassword(value) }}
+              value={password || ""}
+              secureTextEntry={viewPassword}
+              maxLength={8}
+            />
+
+            <TouchableOpacity
+              onPress={() => { setViewPassord(!viewPassword) }}
+              style={[styles.iconPassword]}
+            >
+              { ( ! viewPassword ) ? (<EyeOff size={30} color={"red"} />) :
+              ( <Eye size={30} color={"blue"} />) }
+              
+
+            </TouchableOpacity>
+          </View>
         </View>
         <View style={styles.containerInput}>
           <Text style={styles.inputText}> Confirmar Senha:</Text>
           <TextInput style={styles.input}
             placeholder="informe a senha de acesso ..."
+            onChangeText={(valor) => { setPassword2(valor) }}
+            value={password2}
+            secureTextEntry={true}
+            maxLength={8}
           />
         </View>
 
@@ -62,7 +105,7 @@ export default function Register () {
         <TouchableOpacity
           style={[styles.button]}
           onPress={() => (OnPress())}>
-          <Text style={[styles.buttonText]} > 
+          <Text style={[styles.buttonText]} >
             Criar Conta
           </Text>
         </TouchableOpacity>
@@ -91,7 +134,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 45,
     backgroundColor: "#ffffff",
-    paddingLeft: 20 ,
+    paddingLeft: 20,
     paddingRight: 20,
   },
 
@@ -130,29 +173,29 @@ const styles = StyleSheet.create({
     height: 50,
   },
 
-  containerInput :{
+  containerInput: {
     width: "100%",
     padding: 5,
-    borderWidth: 0 ,
-    borderColor : "gray",
+    borderWidth: 0,
+    borderColor: "gray",
     borderRadius: 15,
     paddingLeft: 10,
 
-    
+
   },
 
-  inputText :{
+  inputText: {
     fontWeight: "bold",
 
   },
   input: {
     backgroundColor: '#F1F5F4',
     width: '100%',
-    borderColor : "gray",
+    borderColor: "gray",
     marginTop: 4,
     borderRadius: 5,
     fontSize: 16,
-    
+
 
   },
 
@@ -176,6 +219,14 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold"
   }
-
+  ,
+  containerSenha: {
+    flexDirection: "row",
+    gap: 3,
+  }
+  , 
+  iconPassword :{
+    alignItems : "center",
+    justifyContent: "center"
+  }
 });
-
