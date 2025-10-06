@@ -1,4 +1,5 @@
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -10,7 +11,7 @@ import {
 import { Link, useNavigation } from "expo-router";
 import { useState } from "react";
 
-import {  Eye , EyeOff } from 'lucide-react-native';
+import { Eye, EyeOff } from 'lucide-react-native';
 
 const logoApp = require('@/assets/images/logoagendei.png');
 
@@ -21,14 +22,18 @@ export default function Register() {
   const [password2, setPassword2] = useState<string>(null);
   const [viewPassword, setViewPassord] = useState<boolean>(false);
 
-  function OnPress() {
+  function onClickRegistrar() {
     console.log("clicou para fazer registro");
     console.log(nome);
     console.log(login);
     console.log(password);
     console.log(password2);
 
+    if ( password != password2 )
+      Alert.alert(" senhas não coincidem ...")
+
   }
+  
   const navigation = useNavigation();
 
   return (
@@ -104,7 +109,7 @@ export default function Register() {
 
         <TouchableOpacity
           style={[styles.button]}
-          onPress={() => (OnPress())}>
+          onPress={() => (onClickRegistrar())}>
           <Text style={[styles.buttonText]} >
             Criar Conta
           </Text>

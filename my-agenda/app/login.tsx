@@ -27,8 +27,7 @@ export default function Login() {
 
   function OnClickLogin() {
     // validar se login e um email valido
-    console.log( login );
-
+    
     if( ! login ){
         Alert.alert(" email invalido ...");
         return
