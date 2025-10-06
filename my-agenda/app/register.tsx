@@ -21,6 +21,7 @@ export default function Register() {
   const [password, setPassword] = useState<string>(null);
   const [password2, setPassword2] = useState<string>(null);
   const [viewPassword, setViewPassord] = useState<boolean>(false);
+  const [ celular, setCelular] = useState<number>(null);
 
   function onClickRegistrar() {
     console.log("clicou para fazer registro");
@@ -28,6 +29,7 @@ export default function Register() {
     console.log(login);
     console.log(password);
     console.log(password2);
+    console.log( celular );
 
     if ( password != password2 )
       Alert.alert(" senhas não coincidem ...")
@@ -67,6 +69,17 @@ export default function Register() {
             placeholder=" informe o email de acesso ..."
             onChangeText={(value) => { setLogin(value) }}
             value={login || ""}
+          />
+        </View>
+
+        <View style={styles.containerInput}>
+          <Text style={styles.inputText}>Celular:</Text>
+          <TextInput style={styles.input}
+            placeholder=" informe o numero do celular ..."
+            onChangeText={(value) => { setCelular(value) }}
+            value={celular || ""}
+            maxLength={14}
+            inputMode="tel"
           />
         </View>
 
