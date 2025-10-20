@@ -10,6 +10,7 @@ import {
 
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
+
 const logoApp = require('@/assets/images/logoagendei.png');
 
 export default function Login() {
@@ -51,7 +52,7 @@ export default function Login() {
           source={logoApp}
           style={styles.logo}
         />
-        <Text style={styles.textlogin}>Login</Text>
+        <Text style={styles.textlogin}>Login V-1r</Text>
       </View>
 
       <View style={styles.main}>

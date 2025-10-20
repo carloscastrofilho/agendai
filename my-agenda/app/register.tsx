@@ -21,7 +21,7 @@ export default function Register() {
   const [password, setPassword] = useState<string>(null);
   const [password2, setPassword2] = useState<string>(null);
   const [viewPassword, setViewPassord] = useState<boolean>(false);
-  const [ celular, setCelular] = useState<number>(null);
+  const [ celular, setCelular] = useState<string>(null);
 
   function onClickRegistrar() {
     console.log("clicou para fazer registro");
