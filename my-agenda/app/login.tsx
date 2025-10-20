@@ -8,6 +8,9 @@ import {
   View
 } from "react-native";
 
+import { db }  from '../databases/firebaseConfig' ;
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 const logoApp = require('@/assets/images/logoagendei.png');
@@ -25,13 +28,19 @@ export default function Login() {
     return
   }
 
-  function OnClickLogin() {
+  async function  OnClickLogin() {
     // validar se login e um email valido
     
     if( ! login ){
         Alert.alert(" email invalido ...");
         return
     }
+    const conection = db ;
+    const auth = getAuth( conection );
+    const resposta = await signInWithEmailAndPassword(auth, login, password || "");
+
+    console.log( resposta ) ;
+    
     // validar login e password
     if ( login != "teste@teste.com" || password != "123"){
         Alert.alert(" login ou senha invalido...");
@@ -51,7 +60,7 @@ export default function Login() {
           source={logoApp}
           style={styles.logo}
         />
-        <Text style={styles.textlogin}>Login</Text>
+        <Text style={styles.textlogin}>Login-firebase</Text>
       </View>
 
       <View style={styles.main}>
