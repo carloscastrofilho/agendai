@@ -11,12 +11,11 @@
 
 // // Sua configuração do app Firebase (deixe-a como está)
 // const firebaseConfig = {
-//   apiKey: "AIzaSyB5RIm_Cn7aAkTJThdBVZ1Z-ouZrqOBYWY",
-//   authDomain: "agendai-23d4b.firebaseapp.com",
-//   projectId: "agendai-23d4b",
-//   storageBucket: "agendai-23d4b.firebasestorage.app",
-//   messagingSenderId: "646408940213",
-//   appId: "1:646408940213:web:a8039db27ae7756ce06cfc"
+//   apiKey: "AIzaSyB5RIm_WY",
+//   authDomain: "agenda
+//   storageBucket: "agendaiage.app",
+//   messagingSenderId: "6464",
+//   appId: "1:646408940213:web:a8039dce06cfc"
 // };
 
 // // 1. Inicializa o App
@@ -39,12 +38,12 @@ import '@react-native-firebase/auth'; // Importa o módulo de autenticação
 // 1. Sua Configuração Firebase (chave de acesso web)
 // Substitua pelos seus próprios valores!
 const firebaseConfig = {
-  apiKey: "AIzaSyB5RIm_Cn7aAkTJThdBVZ1Z-ouZrqOBYWY",
-  authDomain: "agendai-23d4b.firebaseapp.com",
-  projectId: "agendai-23d4b",
-  storageBucket: "agendai-23d4b.firebasestorage.app",
-  messagingSenderId: "646408940213",
-  appId: "1:646408940213:web:a8039db27ae7756ce06cfc"
+  apiKey: "AIzaSyB5RIm_Cn7aAkTJThdBYWY",
+  authDomain: "agendbaseapp.com",
+  projectId: "agenb",
+  storageBucket: "agesestorage.app",
+  messagingSenderId: "6463",
+  appId: "1:646408940213:web"
 };
 
 // 2. Inicialização do App Firebase
