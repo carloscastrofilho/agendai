@@ -14,7 +14,7 @@ import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 const logoApp = require('@/assets/images/logoagendei.png');
 
-export default function Login() {
+export default function Entrar() {
   const navigation = useNavigation();
   const router = useRouter();
 

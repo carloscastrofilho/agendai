@@ -16,12 +16,12 @@ import { Eye, EyeOff } from 'lucide-react-native';
 const logoApp = require('@/assets/images/logoagendei.png');
 
 export default function Register() {
-  const [nome, setNome] = useState<string>(null);
-  const [login, setLogin] = useState<string>(null);
-  const [password, setPassword] = useState<string>(null);
-  const [password2, setPassword2] = useState<string>(null);
+  const [nome, setNome] = useState<string | null>(null);
+  const [login, setLogin] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [password2, setPassword2] = useState<string | null>(null);
   const [viewPassword, setViewPassord] = useState<boolean>(false);
-  const [ celular, setCelular] = useState<string>(null);
+  const [ celular, setCelular] = useState<string | null >(null);
 
   function onClickRegistrar() {
     console.log("clicou para fazer registro");
@@ -113,7 +113,7 @@ export default function Register() {
           <TextInput style={styles.input}
             placeholder="informe a senha de acesso ..."
             onChangeText={(valor) => { setPassword2(valor) }}
-            value={password2}
+            value={password2 || ""}
             secureTextEntry={true}
             maxLength={8}
           />

@@ -56,3 +56,28 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+--
+correções no app.json
+arquivo app.json, adicionar na secção do expo em plugins :
+   1. `"@react-native-firebase/auth",`
+   2. `"@react-native-firebase/app"`
+
+exemplo de como a secção pode ficar:
+```js
+"plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#ffffff"
+        }
+      ],
+      "@react-native-firebase/auth",
+      "@react-native-firebase/app"
+    ],
+```
