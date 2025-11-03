@@ -10,6 +10,7 @@ import {
 
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
+import { signInWithEmail } from '../database/auth-firebase';
 
 const logoApp = require('@/assets/images/logoagendei.png');
 
@@ -26,7 +27,7 @@ export default function Login() {
     return
   }
 
-  function OnClickLogin() {
+  async function OnClickLogin() {
     // validar se login e um email valido
     
     if( ! login ){
@@ -34,6 +35,11 @@ export default function Login() {
         return
     }
     // validar login e password
+    console.log("validando usuario" );
+    const user = await signInWithEmail( login, password || "" );
+    console.log("user:", user);
+    return;
+
     if ( login != "teste@teste.com" || password != "123"){
         Alert.alert(" login ou senha invalido...");
         return
@@ -52,7 +58,7 @@ export default function Login() {
           source={logoApp}
           style={styles.logo}
         />
-        <Text style={styles.textlogin}>Login V-1r</Text>
+        <Text style={styles.textlogin}>Login</Text>
       </View>
 
       <View style={styles.main}>

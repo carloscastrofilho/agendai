@@ -15,15 +15,17 @@ import { Eye, EyeOff } from 'lucide-react-native';
 
 const logoApp = require('@/assets/images/logoagendei.png');
 
-export default function Register() {
-  const [nome, setNome] = useState<string>(null);
-  const [login, setLogin] = useState<string>(null);
-  const [password, setPassword] = useState<string>(null);
-  const [password2, setPassword2] = useState<string>(null);
-  const [viewPassword, setViewPassord] = useState<boolean>(false);
-  const [ celular, setCelular] = useState<string>(null);
+import { signUpWithEmail } from '../database/auth-firebase'
 
-  function onClickRegistrar() {
+export default function Register() {
+  const [nome, setNome] = useState<string | null>(null);
+  const [login, setLogin] = useState<string | null>(null);
+  const [password, setPassword] = useState<string | null>(null);
+  const [password2, setPassword2] = useState<string | null>(null);
+  const [viewPassword, setViewPassord] = useState<boolean>(false);
+  const [ celular, setCelular] = useState<string | null>(null);
+
+  async function onClickRegistrar() {
     console.log("clicou para fazer registro");
     console.log(nome);
     console.log(login);
@@ -31,9 +33,24 @@ export default function Register() {
     console.log(password2);
     console.log( celular );
 
-    if ( password != password2 )
+    if ( password != password2 ){
       Alert.alert(" senhas não coincidem ...")
+      return
+    }
+      
 
+    if ( ! login ) {
+      Alert.alert(" informe um email valido ...")
+      return
+    }
+      
+    const user = await signUpWithEmail( login || "", password || "" );
+    console.log("user registrado:", user);
+
+    if ( user.error ) {
+      Alert.alert(" erro ao registrar : " + user.error );
+      return
+    }
   }
   
   const navigation = useNavigation();
