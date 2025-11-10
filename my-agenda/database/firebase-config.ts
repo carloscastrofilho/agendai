@@ -25,7 +25,9 @@ const firebaseConfig = {
     messagingSenderId: process.env.EXPO_PUBLIC_MESSAGINGSENDERID,
     appId: process.env.EXPO_PUBLIC_APPID
 };
+
 console.log("Firebase Config:", firebaseConfig);
+
 // 3. Inicialização do App Firebase
 const firebaseApp: FirebaseApp = initializeApp(firebaseConfig);
 

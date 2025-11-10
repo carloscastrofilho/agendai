@@ -8,14 +8,14 @@ import {
   View
 } from "react-native";
 
-import { Link, useNavigation } from "expo-router";
+import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
 
 import { Eye, EyeOff } from 'lucide-react-native';
 
 const logoApp = require('@/assets/images/logoagendei.png');
 
-import { signUpWithEmail } from '../database/auth-firebase'
+import { signUpWithEmail } from '../database/auth-api'
 
 export default function Register() {
   const [nome, setNome] = useState<string | null>(null);
@@ -24,7 +24,7 @@ export default function Register() {
   const [password2, setPassword2] = useState<string | null>(null);
   const [viewPassword, setViewPassord] = useState<boolean>(false);
   const [ celular, setCelular] = useState<string | null>(null);
-
+  const router = useRouter();
   async function onClickRegistrar() {
     console.log("clicou para fazer registro");
     console.log(nome);
@@ -44,12 +44,17 @@ export default function Register() {
       return
     }
       
-    const user = await signUpWithEmail( login || "", password || "" );
-    console.log("user registrado:", user);
-
-    if ( user.error ) {
-      Alert.alert(" erro ao registrar : " + user.error );
+    const data = await signUpWithEmail( login || "", password || "" );
+    //console.log("user registrado:", data);
+    if ( data.error ) {
+      Alert.alert(" erro ao registrar : " + data.error );
       return
+    }
+
+    console.log("user", data.user)
+    if ( data.user) {
+      // chama a tela de dashboard
+      router.navigate('/(tabs)')
     }
   }
   

@@ -10,7 +10,7 @@ import {
 
 import { Link, useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
-import { signInWithEmail } from '../database/auth-firebase';
+import { signInWithEmail } from '../database/auth-api';
 
 const logoApp = require('@/assets/images/logoagendei.png');
 
@@ -35,9 +35,18 @@ export default function Login() {
         return
     }
     // validar login e password
-    console.log("validando usuario" );
-    const user = await signInWithEmail( login, password || "" );
+    // console.log("validando usuario" );
+    const {user , error } = await signInWithEmail( login, password || "" );
     console.log("user:", user);
+    console.log("error:", error);
+    if ( user) {
+      // chama a tela de dashboard
+      router.navigate('/(tabs)')
+    }
+    if ( error ) {
+      Alert.alert(" erro ao acessar: " + error );
+      return
+    }
     return;
 
     if ( login != "teste@teste.com" || password != "123"){
