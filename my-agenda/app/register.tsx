@@ -111,7 +111,7 @@ export default function Register() {
               onChangeText={(value) => { setPassword(value) }}
               value={password || ""}
               secureTextEntry={viewPassword}
-              maxLength={8}
+              maxLength={15}
             />
 
             <TouchableOpacity
@@ -130,9 +130,9 @@ export default function Register() {
           <TextInput style={styles.input}
             placeholder="informe a senha de acesso ..."
             onChangeText={(valor) => { setPassword2(valor) }}
-            value={password2}
+            value={password2 || ""}
             secureTextEntry={true}
-            maxLength={8}
+            maxLength={15}
           />
         </View>
 
